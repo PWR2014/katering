@@ -7,7 +7,6 @@ public class postgresConnection {
 		try{
 			Class.forName("org.postgresql.Driver");
 			Connection conn=DriverManager.getConnection("jdbc:postgresql://localhost:5432/katering","katering","katering");
-			JOptionPane.showMessageDialog(null,"Conection SUCCESFUL");
 			return conn;
 		   } catch(Exception e)
 		{
