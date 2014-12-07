@@ -23,8 +23,10 @@ class TabelaPracownikow extends JPanel{
 	private ArrayList<Object[]> array;
 	private Object[][] data;
 	private JTabbedPane pane;
+	private TabelaPracownikow tenForm;
 	public TabelaPracownikow(final JTabbedPane pan) {
 		pane=pan;
+		tenForm=this;
 		setLayout(null);
 		setBounds(0,0, 700, 450);
 		Object [] columnNames={"LP","Imię","Nazwisko","Login","Manager","Kucharz","Dostawca","Obsługa","Edycja","Usuwanie"};
@@ -128,6 +130,11 @@ class TabelaPracownikow extends JPanel{
 					}catch(Exception e1){
 						e1.printStackTrace();
 					}
+				int i=pane.indexOfComponent(tenForm);
+				while(i!=-1){
+					pane.remove(i);
+					i=pane.indexOfComponent(tenForm);
+				}
 				fp.wypelnionyFormularz(id, imi, naz, log, has, pes, tel, upr);
 				pane.add("Edytuj Pracownika",fp);
 				int index=pane.indexOfComponent(fp);
