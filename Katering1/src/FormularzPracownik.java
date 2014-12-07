@@ -123,6 +123,7 @@ class FormularzPracownik extends JPanel{
 	public void czystyFormularz(){
 		btnZapisz = new JButton("Zapisz");
 		btnZapisz.addActionListener(new ActionListener() {
+			@SuppressWarnings("deprecation")
 			public void actionPerformed(ActionEvent e) {
 				try{
 					long loginID=0;
@@ -188,6 +189,7 @@ class FormularzPracownik extends JPanel{
 		}
 		btnZapisz = new JButton("Aktualizuj");
 		btnZapisz.addActionListener(new ActionListener() {
+			@SuppressWarnings("deprecation")
 			public void actionPerformed(ActionEvent e) {
 				try{
 					connection=postgresConnection.dbConnector();
@@ -200,7 +202,7 @@ class FormularzPracownik extends JPanel{
 					pst1.setString(5,textPesel.getText());
 					pst1.setString(6,textTelefon.getText());
 					pst1.setLong(7,id);
-					pst1.executeQuery();
+					pst1.execute();
 					Statement pst2=connection.createStatement();
 					
 					if(chckbxDostawca.isSelected()&& !upr.get("Dostawca")){

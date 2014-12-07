@@ -77,6 +77,7 @@ public class Login {
 		comboBox.setBounds(314, 109, 117, 24);
 		frame.getContentPane().add(comboBox);
 		btnLogin.addActionListener(new ActionListener() {
+			@SuppressWarnings("deprecation")
 			public void actionPerformed(ActionEvent e) {
 				
 				try{
@@ -85,7 +86,6 @@ public class Login {
 					pst.setString(1,textFieldUN.getText());
 					pst.setString(2,passwordField.getText());
 					pst.setString(3, comboBox.getSelectedItem().toString());
-					System.out.println(pst.toString());
 					ResultSet rs=pst.executeQuery();
 					
 					int count =0;
@@ -119,6 +119,7 @@ public class Login {
 					}
 					rs.close(); // zamykanie polaczenia z bazka
 					pst.close();
+					connection.close(); // to jest zamykanie polaczenia
 				   } catch(Exception e1)
 				{
 					   JOptionPane.showMessageDialog(null,e1);

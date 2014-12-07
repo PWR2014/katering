@@ -32,7 +32,6 @@
  
 
 import javax.swing.*;
-import javax.swing.*;
 import javax.swing.plaf.basic.BasicButtonUI;
 import java.awt.*;
 import java.awt.event.*;
@@ -44,7 +43,11 @@ import java.awt.event.*;
  */ 
 
 public class ButtonTabComponent extends JPanel {
-    private final JTabbedPane pane;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private final JTabbedPane pane;
 
     public ButtonTabComponent(final JTabbedPane pane) {
         //unset default FlowLayout' gaps
@@ -57,7 +60,12 @@ public class ButtonTabComponent extends JPanel {
         
         //make JLabel read titles from JTabbedPane
         JLabel label = new JLabel() {
-            public String getText() {
+            /**
+			 * 
+			 */
+			private static final long serialVersionUID = 1L;
+
+			public String getText() {
                 int i = pane.indexOfTabComponent(ButtonTabComponent.this);
                 if (i != -1) {
                     return pane.getTitleAt(i);
@@ -77,7 +85,12 @@ public class ButtonTabComponent extends JPanel {
     }
 
     private class TabButton extends JButton implements ActionListener {
-        public TabButton() {
+        /**
+		 * 
+		 */
+		private static final long serialVersionUID = 1L;
+
+		public TabButton() {
             int size = 17;
             setPreferredSize(new Dimension(size, size));
             setToolTipText("close this tab");

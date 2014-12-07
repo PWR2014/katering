@@ -20,8 +20,6 @@ public class Menager extends JFrame {
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JTabbedPane tabbedPane; 
-	private ButtonTabComponent buttonedTab;
-
 	/**
 	 * Launch the application.
 	 */
@@ -74,13 +72,18 @@ public class Menager extends JFrame {
 				tabbedPane.add("Nowy Pracownik",fp);
 				int index=tabbedPane.indexOfComponent(fp);
 				tabbedPane.setTabComponentAt(index, new ButtonTabComponent(tabbedPane));
+				tabbedPane.setSelectedIndex(index);
 			}
 		});
 		mnPracownicy.add(mntmNowy);
 		JMenuItem mntmLista = new JMenuItem("Lista Pracowników");
 		mntmLista.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				
+			TabelaPracownikow tp=new TabelaPracownikow(tabbedPane);
+			tabbedPane.add("Tabela Pracowników",tp);
+			int index=tabbedPane.indexOfComponent(tp);
+			tabbedPane.setTabComponentAt(index, new ButtonTabComponent(tabbedPane));
+			tabbedPane.setSelectedIndex(index);
 			}
 		});
 		mnPracownicy.add(mntmLista);
