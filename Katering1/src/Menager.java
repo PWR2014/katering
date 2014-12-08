@@ -87,9 +87,72 @@ public class Menager extends JFrame {
 			}
 		});
 		mnPracownicy.add(mntmLista);
-
-		setContentPane(contentPane);
 		
+		JMenu mnMagazyn = new JMenu("Magazyn");
+		JMenuItem mntmDodajSurowiec=new JMenuItem("Dodaj Surowiec");
+		mnMagazyn.add(mntmDodajSurowiec);
+		mntmDodajSurowiec.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+		});
+		JMenuItem mntmListaSurowcow=new JMenuItem("Lista Surowców");
+		mnMagazyn.add(mntmListaSurowcow);
+		mntmListaSurowcow.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+		});
+		JMenuItem mntmPrzyjmijSurowiec=new JMenuItem("Przyjmij Surowiec");
+		mnMagazyn.add(mntmPrzyjmijSurowiec);
+		mntmPrzyjmijSurowiec.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+		});
+		JMenuItem mntmStanSurowcow=new JMenuItem("Stan Surowców");
+		mnMagazyn.add(mntmStanSurowcow);
+		mntmStanSurowcow.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+		});
+		menuBar.add(mnMagazyn);
+		JMenu mnReceptury = new JMenu("Receptury");
+		menuBar.add(mnReceptury);
+		JMenuItem mntmDodajRecepture = new JMenuItem("Dodaj Recepturę");
+		mntmDodajRecepture.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+		});
+		mnReceptury.add(mntmDodajRecepture);
+		JMenuItem mntmListaReceptur = new JMenuItem("Lista Receptur");
+		mntmListaReceptur.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+		});
+		mnReceptury.add(mntmListaReceptur);
+		setContentPane(contentPane);
 		tabbedPane = new JTabbedPane(JTabbedPane.TOP);
 		contentPane.add(tabbedPane, BorderLayout.CENTER);
 	}
