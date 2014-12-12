@@ -27,7 +27,7 @@ class TabelaSurowcow extends JPanel{
 		tenForm=this;
 		setLayout(null);
 		setBounds(0,0, 700, 450);
-		Object [] columnNames={"LP","Nazwa","Jednsotka","Edycja","Usuwanie"};
+		Object [] columnNames={"LP","Nazwa","Jednostka","Edycja","Usuwanie"};
 		try{
 		Connection connection=postgresConnection.dbConnector();
 		String query="select * from \"Surowce\";";
