@@ -100,6 +100,7 @@ public class Menager extends JFrame {
 				tabbedPane.add("Nowy Surowiec",fm);
 				int index=tabbedPane.indexOfComponent(fm);
 				tabbedPane.setTabComponentAt(index, new ButtonTabComponent(tabbedPane));
+				tabbedPane.setSelectedIndex(index);
 				
 			}
 		});
@@ -123,7 +124,11 @@ public class Menager extends JFrame {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
+				PrzyjecieSurowca ps = new PrzyjecieSurowca(tabbedPane);
+				tabbedPane.add("Przyjmij (Odejmij) Surowiec",ps);
+				int index = tabbedPane.indexOfComponent(ps);
+				tabbedPane.setTabComponentAt(index, new ButtonTabComponent(tabbedPane));
+				tabbedPane.setSelectedIndex(index);
 				
 			}
 		});
