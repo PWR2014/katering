@@ -109,7 +109,11 @@ public class Menager extends JFrame {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
+				TabelaSurowcow ts = new TabelaSurowcow(tabbedPane);
+				tabbedPane.add("Tabela Surowców",ts);
+				int index = tabbedPane.indexOfComponent(ts);
+				tabbedPane.setTabComponentAt(index, new ButtonTabComponent(tabbedPane));
+				tabbedPane.setSelectedIndex(index);
 				
 			}
 		});

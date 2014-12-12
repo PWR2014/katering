@@ -88,7 +88,7 @@ public class FormularzSurowiec extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				try{
 					connection=postgresConnection.dbConnector();
-					String query1="update \"Surowce\" set nazwa_surowca=?, jednostka_miar=? where id=?";
+					String query1="update \"Surowce\" set nazwa_surowca=?, jednostka_miary=? where id=?";
 					PreparedStatement pst1=connection.prepareStatement(query1);
 					pst1.setString(1,textSurowiec.getText());
 					pst1.setString(2,comboJednostka.getSelectedItem().toString());
