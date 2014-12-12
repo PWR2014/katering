@@ -47,7 +47,6 @@ public class PrzyjecieSurowca extends JPanel {
 		}catch(Exception e){
 			JOptionPane.showMessageDialog(null,e);
 		}
-	//	String [] tymczasowaLista={"asdf","asdf"};
 		comboListaSurowcow = new JComboBox<Object>(listaSurowcow.toArray());
 		comboListaSurowcow.setBounds(12, 40, 159, 24);
 		add(comboListaSurowcow);
