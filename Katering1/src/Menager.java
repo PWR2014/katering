@@ -95,7 +95,11 @@ public class Menager extends JFrame {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
+				FormularzSurowiec fm=new FormularzSurowiec(tabbedPane);
+				fm.czystyFormularz();
+				tabbedPane.add("Nowy Surowiec",fm);
+				int index=tabbedPane.indexOfComponent(fm);
+				tabbedPane.setTabComponentAt(index, new ButtonTabComponent(tabbedPane));
 				
 			}
 		});
