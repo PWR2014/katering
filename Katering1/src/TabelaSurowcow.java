@@ -97,7 +97,7 @@ class TabelaSurowcow extends JPanel{
 						e1.printStackTrace();
 					}
 				int i=pane.indexOfComponent(tenForm);
-				while(i!=-1){
+				if(i!=-1){
 					pane.remove(i);
 					i=pane.indexOfComponent(tenForm);
 				}
