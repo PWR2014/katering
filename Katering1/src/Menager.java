@@ -154,6 +154,11 @@ public class Menager extends JFrame {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				FormularzReceptura fr=new FormularzReceptura();
+				tabbedPane.add("Dodaj Recepturę",fr);
+				int index = tabbedPane.indexOfComponent(fr);
+				tabbedPane.setTabComponentAt(index, new ButtonTabComponent(tabbedPane));
+				tabbedPane.setSelectedIndex(index);
 				// TODO Auto-generated method stub
 				
 			}
@@ -169,6 +174,50 @@ public class Menager extends JFrame {
 			}
 		});
 		mnReceptury.add(mntmListaReceptur);
+		JMenu mnRaporty = new JMenu("Raporty");
+		menuBar.add(mnRaporty);
+		JMenuItem mntmRaportCzasu = new JMenuItem("Czas Pracy");
+		mntmRaportCzasu.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				
+				// TODO Auto-generated method stub
+				
+			}
+		});
+		mnRaporty.add(mntmRaportCzasu);
+		JMenuItem mntmZuzycieProduktow = new JMenuItem("Zużycie Produtków");
+		mntmZuzycieProduktow.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+		});
+		mnRaporty.add(mntmZuzycieProduktow);
+		JMenuItem mntmIloscZamowien = new JMenuItem("Ilość Zamówień");
+		mntmIloscZamowien.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				
+				// TODO Auto-generated method stub
+				
+			}
+		});
+		mnRaporty.add(mntmIloscZamowien);
+		JMenuItem mntmRaportSprzedazy = new JMenuItem("Sprzedaż");
+		mntmRaportSprzedazy.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+		});
+		mnRaporty.add(mntmRaportSprzedazy);
 		setContentPane(contentPane);
 		tabbedPane = new JTabbedPane(JTabbedPane.TOP);
 		contentPane.add(tabbedPane, BorderLayout.CENTER);
