@@ -154,12 +154,12 @@ public class Menager extends JFrame {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				FormularzReceptura fr=new FormularzReceptura();
+				FormularzReceptura fr=new FormularzReceptura(tabbedPane);
+				fr.czystyFormularz();
 				tabbedPane.add("Dodaj Recepturę",fr);
 				int index = tabbedPane.indexOfComponent(fr);
 				tabbedPane.setTabComponentAt(index, new ButtonTabComponent(tabbedPane));
 				tabbedPane.setSelectedIndex(index);
-				// TODO Auto-generated method stub
 				
 			}
 		});
@@ -169,7 +169,11 @@ public class Menager extends JFrame {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
+				TabelaReceptur tr = new TabelaReceptur(tabbedPane);
+				tabbedPane.add("Tabela Receptur",tr);
+				int index = tabbedPane.indexOfComponent(tr);
+				tabbedPane.setTabComponentAt(index, new ButtonTabComponent(tabbedPane));
+				tabbedPane.setSelectedIndex(index);
 				
 			}
 		});
