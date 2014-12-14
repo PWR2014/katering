@@ -99,6 +99,7 @@ public class Login {
 						
 						JOptionPane.showMessageDialog(null,"Poprawna nazwa użytkownika i hasło");
 						frame.dispose();
+						connection.close();
 						switch(comboBox.getSelectedItem().toString()){
 						case "Manager":	Menager mr=new Menager();  mr.setVisible(true); break;
 						case "Kucharz": Kucharz kch=new Kucharz(); kch.setVisible(true); break;
@@ -117,9 +118,7 @@ public class Login {
 	
 						
 					}
-					rs.close(); // zamykanie polaczenia z bazka
-					pst.close();
-					connection.close(); // to jest zamykanie polaczenia
+					
 				   } catch(Exception e1)
 				{
 					   JOptionPane.showMessageDialog(null,e1);
@@ -148,5 +147,10 @@ public class Login {
 		label_1.setBounds(362, 161, 46, 46);
 		frame.getContentPane().add(label_1);
 
+	}
+
+	public void pokaz() {
+		frame.setVisible(true);
+		
 	}
 }

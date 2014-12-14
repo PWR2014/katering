@@ -52,7 +52,20 @@ public class Menager extends JFrame {
 		
 		JMenu mnPlik = new JMenu("Plik");
 		menuBar.add(mnPlik);
-		
+		JMenuItem mntmWyloguj = new JMenuItem("Wyloguj");
+		mntmWyloguj.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+				Login window = new Login();
+				window.pokaz();
+				
+
+				
+			}
+		});
+		mnPlik.add(mntmWyloguj);		
 		JMenuItem mntmWyjdz = new JMenuItem("Wyjdź");
 		mntmWyjdz.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -60,6 +73,7 @@ public class Menager extends JFrame {
 			}
 		});
 		mnPlik.add(mntmWyjdz);
+
 		JMenu mnPracownicy=new JMenu("Pracownicy");
 		menuBar.add(mnPracownicy);
 		JMenuItem mntmNowy = new JMenuItem("Nowy Pracownik");
