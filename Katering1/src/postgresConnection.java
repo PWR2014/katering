@@ -6,7 +6,7 @@ public class postgresConnection {
 	{
 		try{
 			Class.forName("org.postgresql.Driver");
-			Connection conn=DriverManager.getConnection("jdbc:postgresql://localhost:5432/katering","katering","katering");
+			Connection conn=DriverManager.getConnection("jdbc:postgresql://localhost:5432/katering","postgres","haslo");
 			return conn;
 		   } catch(Exception e)
 		{
