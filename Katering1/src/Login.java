@@ -81,7 +81,7 @@ public class Login {
 			public void actionPerformed(ActionEvent e) {
 				
 				try{
-					String query="select \"Pracownicy\".id from \"Uprawnienie\" inner join \"Pracownicy\" on \"Pracownicy\".id=\"Uprawnienie\".id_pracownika where \"Pracownicy\".login=? and \"Pracownicy\".\"hasło\"=? and \"Uprawnienie\".typ_uprawnienia=?";
+					String query="select \"Pracownicy\".id from \"Uprawnienie\" inner join \"Pracownicy\" on \"Pracownicy\".id=\"Uprawnienie\".id_pracownika where \"Pracownicy\".login=? and \"Pracownicy\".\"haslo\"=? and \"Uprawnienie\".typ_uprawnienia=?";
 					PreparedStatement pst=connection.prepareStatement(query);
 					pst.setString(1,textFieldUN.getText());
 					pst.setString(2,passwordField.getText());
