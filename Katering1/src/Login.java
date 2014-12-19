@@ -56,7 +56,7 @@ public class Login {
 		frame.setTitle("Logowanie");
 		JLabel lblNewLabel = new JLabel("U\u017Cytkownik");
 		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 12));
-		lblNewLabel.setBounds(207, 31, 89, 26);
+		lblNewLabel.setBounds(215, 30, 89, 26);
 		frame.getContentPane().add(lblNewLabel);
 		
 		JLabel lblNewLabel_1 = new JLabel("Has\u0142o");

@@ -70,10 +70,10 @@ SET default_tablespace = '';
 SET default_with_oids = false;
 
 --
--- Name: Adresy; Type: TABLE; Schema: public; Owner: katering; Tablespace: 
+-- Name: adresy; Type: TABLE; Schema: public; Owner: katering; Tablespace: 
 --
 
-CREATE TABLE "Adresy" (
+CREATE TABLE adresy (
     id bigint NOT NULL,
     "miejscowość" character varying(30),
     kod_pocztowy kod_pocztowy,
@@ -83,7 +83,7 @@ CREATE TABLE "Adresy" (
 );
 
 
-ALTER TABLE public."Adresy" OWNER TO katering;
+ALTER TABLE public.adresy OWNER TO katering;
 
 --
 -- Name: Adresy_id_seq; Type: SEQUENCE; Schema: public; Owner: katering
@@ -103,7 +103,7 @@ ALTER TABLE public."Adresy_id_seq" OWNER TO katering;
 -- Name: Adresy_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: katering
 --
 
-ALTER SEQUENCE "Adresy_id_seq" OWNED BY "Adresy".id;
+ALTER SEQUENCE "Adresy_id_seq" OWNED BY adresy.id;
 
 
 --
@@ -171,20 +171,20 @@ ALTER SEQUENCE "Dostawy_id_seq" OWNED BY "Dostawy".id;
 
 
 --
--- Name: Klienci; Type: TABLE; Schema: public; Owner: katering; Tablespace: 
+-- Name: klienci; Type: TABLE; Schema: public; Owner: katering; Tablespace: 
 --
 
-CREATE TABLE "Klienci" (
+CREATE TABLE klienci (
     id bigint NOT NULL,
-    nazwa character varying(100),
     "imię" character varying(20) NOT NULL,
     nazwisko character varying(40) NOT NULL,
     telefon character varying(20) NOT NULL,
-    adres bigint
+    adres bigint,
+    id_zamowienia integer
 );
 
 
-ALTER TABLE public."Klienci" OWNER TO katering;
+ALTER TABLE public.klienci OWNER TO katering;
 
 --
 -- Name: Klienci_id_seq; Type: SEQUENCE; Schema: public; Owner: katering
@@ -204,14 +204,14 @@ ALTER TABLE public."Klienci_id_seq" OWNER TO katering;
 -- Name: Klienci_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: katering
 --
 
-ALTER SEQUENCE "Klienci_id_seq" OWNED BY "Klienci".id;
+ALTER SEQUENCE "Klienci_id_seq" OWNED BY klienci.id;
 
 
 --
--- Name: PozycjeZamówień; Type: TABLE; Schema: public; Owner: katering; Tablespace: 
+-- Name: pozycjezamowien; Type: TABLE; Schema: public; Owner: katering; Tablespace: 
 --
 
-CREATE TABLE "PozycjeZamówień" (
+CREATE TABLE pozycjezamowien (
     id bigint NOT NULL,
     "id_zamówienia" bigint,
     id_produktu bigint,
@@ -223,7 +223,7 @@ CREATE TABLE "PozycjeZamówień" (
 );
 
 
-ALTER TABLE public."PozycjeZamówień" OWNER TO katering;
+ALTER TABLE public.pozycjezamowien OWNER TO katering;
 
 --
 -- Name: PozycjeZamówień_id_seq; Type: SEQUENCE; Schema: public; Owner: katering
@@ -243,7 +243,7 @@ ALTER TABLE public."PozycjeZamówień_id_seq" OWNER TO katering;
 -- Name: PozycjeZamówień_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: katering
 --
 
-ALTER SEQUENCE "PozycjeZamówień_id_seq" OWNED BY "PozycjeZamówień".id;
+ALTER SEQUENCE "PozycjeZamówień_id_seq" OWNED BY pozycjezamowien.id;
 
 
 --
@@ -467,12 +467,7 @@ CREATE TABLE zamowienia (
     data_zamowienia date NOT NULL,
     termin_realizacji timestamp without time zone NOT NULL,
     przyjal bigint DEFAULT 1,
-    klient bigint,
-    ilosc integer,
-    imie text,
-    nazwisko text,
-    adres text,
-    id_produktu integer
+    klient bigint
 );
 
 
@@ -500,44 +495,10 @@ ALTER SEQUENCE "Zamówienia_id_seq" OWNED BY zamowienia.id;
 
 
 --
--- Name: cena; Type: VIEW; Schema: public; Owner: postgres
---
-
-CREATE VIEW cena AS
- SELECT (p.cena * (z.ilosc)::double precision) AS suma_brutto,
-    z.id_produktu
-   FROM (produkty p
-     JOIN zamowienia z ON ((p.id = z.id_produktu)));
-
-
-ALTER TABLE public.cena OWNER TO postgres;
-
---
--- Name: id; Type: DEFAULT; Schema: public; Owner: katering
---
-
-ALTER TABLE ONLY "Adresy" ALTER COLUMN id SET DEFAULT nextval('"Adresy_id_seq"'::regclass);
-
-
---
 -- Name: id; Type: DEFAULT; Schema: public; Owner: katering
 --
 
 ALTER TABLE ONLY "Dostawy" ALTER COLUMN id SET DEFAULT nextval('"Dostawy_id_seq"'::regclass);
-
-
---
--- Name: id; Type: DEFAULT; Schema: public; Owner: katering
---
-
-ALTER TABLE ONLY "Klienci" ALTER COLUMN id SET DEFAULT nextval('"Klienci_id_seq"'::regclass);
-
-
---
--- Name: id; Type: DEFAULT; Schema: public; Owner: katering
---
-
-ALTER TABLE ONLY "PozycjeZamówień" ALTER COLUMN id SET DEFAULT nextval('"PozycjeZamówień_id_seq"'::regclass);
 
 
 --
@@ -579,6 +540,27 @@ ALTER TABLE ONLY "Uprawnienie" ALTER COLUMN id SET DEFAULT nextval('"Uprawnienie
 -- Name: id; Type: DEFAULT; Schema: public; Owner: katering
 --
 
+ALTER TABLE ONLY adresy ALTER COLUMN id SET DEFAULT nextval('"Adresy_id_seq"'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: katering
+--
+
+ALTER TABLE ONLY klienci ALTER COLUMN id SET DEFAULT nextval('"Klienci_id_seq"'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: katering
+--
+
+ALTER TABLE ONLY pozycjezamowien ALTER COLUMN id SET DEFAULT nextval('"PozycjeZamówień_id_seq"'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: katering
+--
+
 ALTER TABLE ONLY produkty ALTER COLUMN id SET DEFAULT nextval('"Produkty_id_seq"'::regclass);
 
 
@@ -593,7 +575,7 @@ ALTER TABLE ONLY zamowienia ALTER COLUMN id SET DEFAULT nextval('"Zamówienia_id
 -- Name: Adresy_pkey; Type: CONSTRAINT; Schema: public; Owner: katering; Tablespace: 
 --
 
-ALTER TABLE ONLY "Adresy"
+ALTER TABLE ONLY adresy
     ADD CONSTRAINT "Adresy_pkey" PRIMARY KEY (id);
 
 
@@ -617,7 +599,7 @@ ALTER TABLE ONLY "Dostawy"
 -- Name: Klienci_pkey; Type: CONSTRAINT; Schema: public; Owner: katering; Tablespace: 
 --
 
-ALTER TABLE ONLY "Klienci"
+ALTER TABLE ONLY klienci
     ADD CONSTRAINT "Klienci_pkey" PRIMARY KEY (id);
 
 
@@ -625,7 +607,7 @@ ALTER TABLE ONLY "Klienci"
 -- Name: PozycjeZamówień_pkey; Type: CONSTRAINT; Schema: public; Owner: katering; Tablespace: 
 --
 
-ALTER TABLE ONLY "PozycjeZamówień"
+ALTER TABLE ONLY pozycjezamowien
     ADD CONSTRAINT "PozycjeZamówień_pkey" PRIMARY KEY (id);
 
 
@@ -737,15 +719,15 @@ ALTER TABLE ONLY "Dostawy"
 -- Name: Klienci_adres_fkey; Type: FK CONSTRAINT; Schema: public; Owner: katering
 --
 
-ALTER TABLE ONLY "Klienci"
-    ADD CONSTRAINT "Klienci_adres_fkey" FOREIGN KEY (adres) REFERENCES "Adresy"(id) ON UPDATE CASCADE ON DELETE SET NULL;
+ALTER TABLE ONLY klienci
+    ADD CONSTRAINT "Klienci_adres_fkey" FOREIGN KEY (adres) REFERENCES adresy(id) ON UPDATE CASCADE ON DELETE SET NULL;
 
 
 --
 -- Name: PozycjeZamówień_id_produktu_fkey; Type: FK CONSTRAINT; Schema: public; Owner: katering
 --
 
-ALTER TABLE ONLY "PozycjeZamówień"
+ALTER TABLE ONLY pozycjezamowien
     ADD CONSTRAINT "PozycjeZamówień_id_produktu_fkey" FOREIGN KEY (id_produktu) REFERENCES produkty(id) ON UPDATE CASCADE ON DELETE SET NULL;
 
 
@@ -753,7 +735,7 @@ ALTER TABLE ONLY "PozycjeZamówień"
 -- Name: PozycjeZamówień_id_zamówienia_fkey; Type: FK CONSTRAINT; Schema: public; Owner: katering
 --
 
-ALTER TABLE ONLY "PozycjeZamówień"
+ALTER TABLE ONLY pozycjezamowien
     ADD CONSTRAINT "PozycjeZamówień_id_zamówienia_fkey" FOREIGN KEY ("id_zamówienia") REFERENCES zamowienia(id) ON UPDATE CASCADE ON DELETE CASCADE;
 
 
@@ -794,7 +776,7 @@ ALTER TABLE ONLY "Uprawnienie"
 --
 
 ALTER TABLE ONLY zamowienia
-    ADD CONSTRAINT "Zamówienia_klient_fkey" FOREIGN KEY (klient) REFERENCES "Klienci"(id) ON UPDATE CASCADE;
+    ADD CONSTRAINT "Zamówienia_klient_fkey" FOREIGN KEY (klient) REFERENCES klienci(id) ON UPDATE CASCADE;
 
 
 --
@@ -810,8 +792,8 @@ ALTER TABLE ONLY zamowienia
 --
 
 REVOKE ALL ON SCHEMA public FROM PUBLIC;
-REVOKE ALL ON SCHEMA public FROM postgres;
-GRANT ALL ON SCHEMA public TO postgres;
+REVOKE ALL ON SCHEMA public FROM katering;
+GRANT ALL ON SCHEMA public TO katering;
 GRANT ALL ON SCHEMA public TO PUBLIC;
 
 
